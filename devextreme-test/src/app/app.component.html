@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <hr>
+            <dx-data-grid [dataSource]="partylist" keyExpr="ID" [allowColumnReordering]="true" [columnAutoWidth]="true"
+                [showBorders]="true" (onSelectionChanged)="selectList($event)">
+
+
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+
+
+                <dxi-column dataField="ID" [width]="100">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="Firstname">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <!-- <dxi-column dataField="Lastname" [groupIndex]="0"></dxi-column> -->
+                <dxi-column dataField="Lastname">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="BirthDate" dataType="date">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="Age" [width]="100">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="Photo" [width]="120" [visible]="true">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+
+
+                <dxi-column type="buttons">
+                    <dxi-button name="edit"></dxi-button>
+                    <dxi-button name="delete"></dxi-button>
+                    <dxi-button hint="Clone" icon="airplane" [visible]="true" [onClick]="onClick"></dxi-button>
+                </dxi-column>
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" mode="row">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+
+                <dxo-summary>
+                    <dxi-total-item column="ID" summaryType="count">
+                    </dxi-total-item>
+                    <dxi-total-item column="Age" summaryType="avg">
+                    </dxi-total-item>
+                </dxo-summary>
+
+                <dxo-grouping [autoExpandAll]="expanded"></dxo-grouping>
+                <dxo-toolbar>
+                    <dxi-item name="groupPanel"></dxi-item>
+                    <dxi-item location="after">
+                        <dx-button [text]="expanded ? 'Collapse All' : 'Expand All'" [width]="136"
+                            (onClick)="expanded = !expanded">
+                        </dx-button>
+                    </dxi-item>
+                    <dxi-item name="addRowButton" showText="always"></dxi-item>
+                    <dxi-item name="exportButton"></dxi-item>
+                    <dxi-item name="columnChooserButton"></dxi-item>
+                    <dxi-item name="searchPanel"></dxi-item>
+                </dxo-toolbar>
+
+
+                <dxo-master-detail [enabled]="true" [template]="'partylist-info'">
+                </dxo-master-detail>
+                <div *dxTemplate="let partylist of 'partylist-info'">
+                    <img class="partylist-photo" [src]="partylist.data.Photo">
+                    <p class="partylist-info">{{ partylist.data.Firstname }} {{ partylist.data.Lastname }}</p>
+                </div>
+
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [showNavigationButtons]="true"></dxo-pager>
+
+            </dx-data-grid>
+
+            <div [hidden]="!isVisible">
+                <img id="selected-photo" src="{{selectedList.Photo}}">
+                <p id="selected-partylist" *ngIf="selectedList">
+                    Selected Name : {{ selectedList.Firstname }} {{ selectedList.Lastname }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

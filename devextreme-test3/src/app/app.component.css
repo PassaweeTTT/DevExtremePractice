@@ -1,0 +1,11 @@
+
+/* ... */
+#app-container {
+    width: 900px;
+    position: relative;
+}
+
+
+dx-data-grid{
+    max-width: fit-content
+}

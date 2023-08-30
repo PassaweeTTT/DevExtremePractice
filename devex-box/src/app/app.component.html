@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>this is select box</h2>
+<div class="row">
+  <div class="col-xs-12">
+
+    <dx-select-box [dataSource]="data" valueExpr="Name" displayExpr="Name" [searchEnabled]="true"
+      (onValueChanged)="onValueChanged($event)" label="Product" labelMode="floating" [grouped]="false">
+    </dx-select-box>
+  </div>
+</div>
+
+<hr>
+
+<h2>this is calender</h2>
+<dx-calendar 
+  [min]="minDate" 
+  [max]="maxDate" 
+  [disabledDates]="disabledDates"
+  
+  [showTodayButton]="true"
+  [showWeekNumbers]="true"
+  weekNumberRule="firstDay"
+  cellTemplate="cell">
+
+  <span
+        *dxTemplate="let cell of 'cell'"
+        [ngClass]="getCellCssClass(cell.date, cell.view)"
+    >
+        {{ cell.text }}
+    </span>
+
+</dx-calendar>
+</div>
+

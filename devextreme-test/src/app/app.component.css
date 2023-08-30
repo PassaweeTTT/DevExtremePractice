@@ -1,0 +1,30 @@
+#dataGrid {
+    height: 500px;
+}
+
+
+
+#selected-photo {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    float: left;
+}
+
+#selected-partylist {
+    padding-top: 20px;
+    text-align: justify;
+}
+
+.partylist-photo {
+    height: 140px;
+    float: left;
+    padding: 0 20px 20px 0;
+}
+ 
+.partylist-info {
+    text-align: justify;
+    white-space: normal;
+}
+ 
